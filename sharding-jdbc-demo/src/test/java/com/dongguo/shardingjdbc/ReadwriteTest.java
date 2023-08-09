@@ -22,4 +22,10 @@ class ReadwriteTest {
         user.setUname("张三丰");
         userMapper.insert(user);
     }
+
+    @Test
+    public void testSelect(){
+        User user = userMapper.selectById(1);
+        System.out.println(user);
+    }
 }
