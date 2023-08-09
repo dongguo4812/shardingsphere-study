@@ -1,9 +1,5 @@
-# 模式配置
-mode:
-  type: Memory
 # 数据源配置
-datasource:
- # names: master,slave1,slave2
+dataSources:
   master:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
@@ -24,25 +20,25 @@ datasource:
     password: 123456
 #规则配置
 rules:
-  - !READWRITE_SPLITTING
-    dataSources:
-      myds:
-        type: Static
-        props:
-          writeDataSourceName: master
-          readDataSourceNames: slave1,slave2
-        loadBalancerName: alg_round
+- !READWRITE_SPLITTING
+  dataSources:
+    myds:
+      writeDataSourceName: master
+      readDataSourceNames:
+        - slave1
+        - slave2
+      loadBalancerName: alg_round
     #算法配置
-    loadBalancers:
-      alg_round:
-        type: ROUND_ROBIN
-      alg_random:
-        type: RANDOM
-      alg_weight:
-        type: WEIGHT
-        props:
-          slave1: 1
-          slave2: 2
+  loadBalancers:
+    alg_round:
+      type: ROUND_ROBIN
+    alg_random:
+      type: RANDOM
+    alg_weight:
+      type: WEIGHT
+      props:
+        slave1: 1
+        slave2: 2
 #属性配置
 props:
   sql-show: true
