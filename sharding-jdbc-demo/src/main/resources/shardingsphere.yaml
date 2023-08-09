@@ -27,6 +27,7 @@ rules:
       readDataSourceNames:
         - slave1
         - slave2
+      transactionalReadQueryStrategy: PRIMARY
       loadBalancerName: alg_round
     #算法配置
   loadBalancers:
