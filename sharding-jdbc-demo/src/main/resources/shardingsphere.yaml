@@ -28,7 +28,7 @@ rules:
         - slave1
         - slave2
       transactionalReadQueryStrategy: PRIMARY
-      loadBalancerName: alg_round
+      loadBalancerName: alg_random
     #算法配置
   loadBalancers:
     alg_round:
