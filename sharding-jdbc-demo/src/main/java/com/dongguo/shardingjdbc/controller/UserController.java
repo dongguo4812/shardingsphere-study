@@ -25,12 +25,9 @@ public class UserController {
      * 测试负载均衡策略
      */
     @Transactional
-    @GetMapping("/insertUser")
+    @GetMapping("/selectAll")
     public void selectAll(){
-        User user = new User();
-        user.setUname("张三");
-        userMapper.insert(user);
-
         List<User> users = userMapper.selectList(null);
+        users.forEach(System.out::println);
     }
 }
