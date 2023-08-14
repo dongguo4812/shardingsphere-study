@@ -6,8 +6,8 @@ spring:
     active: dev
   datasource:
     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
-    url: jdbc:shardingsphere:classpath:shardingsphere.yaml
-
+#    url: jdbc:shardingsphere:classpath:shardingsphere-readwrite.yaml
+    url: jdbc:shardingsphere:classpath:shardingsphere-sharding.yaml
 # Swagger配置
 swagger:
   # 是否开启swagger
