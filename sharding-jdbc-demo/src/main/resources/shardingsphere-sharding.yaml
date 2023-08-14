@@ -14,7 +14,7 @@ dataSources:
     password: 123456
 #规则配置
 rules:
-- !READWRITE_SPLITTING
+- !SHARDING
   tables:
     # 逻辑表名
     t_user:
