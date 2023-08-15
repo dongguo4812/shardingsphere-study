@@ -38,7 +38,6 @@ rules:
       type: MOD
       props:
         sharding-column: order_id
-        sharding-num: 1
     # 标准分片算法-行表达式分片算法
     alg_inline_userid:
       #基于行表达式的分片算法
