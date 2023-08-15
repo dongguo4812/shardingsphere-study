@@ -23,9 +23,6 @@ rules:
 - !SHARDING
   tables:
     # 逻辑表名
-    t_user:
-      # 值由数据源名 + 表名组成，以小数点分隔。
-      actualDataNodes: server-user.t_user
     t_order:
       actualDataNodes: server-order${0..1}.t_order0
       #分库策略
@@ -34,9 +31,14 @@ rules:
           # 分片列名称
           shardingColumn: user_id
           # 分片算法名称
-          shardingAlgorithmName: alg_inline_userid
+          shardingAlgorithmName: alg_mod
   # 分片算法配置
   shardingAlgorithms:
+    alg_mod:
+      type: MOD
+      props:
+        sharding-column: order_id
+        sharding-num: 1
     # 标准分片算法-行表达式分片算法
     alg_inline_userid:
       #基于行表达式的分片算法
