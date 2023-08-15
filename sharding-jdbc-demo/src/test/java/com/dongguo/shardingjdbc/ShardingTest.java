@@ -48,4 +48,31 @@ public class ShardingTest {
         System.out.println(user);
         System.out.println(order);
     }
+
+    /**
+     * 水平分片：插入数据测试
+     */
+    @Test
+    public void testInsertOrder(){
+        Order order = new Order();
+        order.setOrderNo("SP202308140001");
+        order.setUserId(1L);
+        order.setAmount(new BigDecimal(100));
+        orderMapper.insert(order);
+    }
+
+    /**
+     * 水平分片：分库插入数据测试
+     */
+    @Test
+    public void testInsertOrderDatabaseStrategy(){
+
+        for (long i = 4; i <= 8; i++) {
+            Order order = new Order();
+            order.setOrderNo("SP20230814000" + i);
+            order.setUserId(i);
+            order.setAmount(new BigDecimal(100));
+            orderMapper.insert(order);
+        }
+    }
 }
