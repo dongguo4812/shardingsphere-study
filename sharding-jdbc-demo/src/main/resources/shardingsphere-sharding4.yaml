@@ -25,20 +25,20 @@ rules:
     # 逻辑表名
     t_order:
       actualDataNodes: server-order$->{0..1}.t_order$->{0..1}
-      #分库策略
-      databaseStrategy:
+      tableStrategy:
         standard:
           # 分片列名称
-          shardingColumn: user_id
+          shardingColumn: id
           # 分片算法名称
-          shardingAlgorithmName: alg_inline_userid
-   autoTables:
-     tableStrategy:
-       standard:
-          # 分片列名称
-          shardingColumn: user_id
-          # 分片算法名称
-          shardingAlgorithmName: alg_hash_mod      
+          shardingAlgorithmName: alg_inline_orderno
+  bindingTables:
+    - t_order
+  defaultDatabaseStrategy:
+    standard:
+      shardingColumn: user_id
+      shardingAlgorithmName: alg_inline_userid
+  defaultTableStrategy:
+    none:
   # 分片算法配置
   shardingAlgorithms:
     # 标准分片算法-行表达式分片算法
@@ -46,11 +46,11 @@ rules:
       #基于行表达式的分片算法
       type: INLINE
       props:
-        algorithm-expression: server-order${user_id % 2}
-    alg_hash_mod:
-      type: HASH_MOD
+        algorithm-expression: server-order$->{user_id % 2}
+    alg_inline_orderno:
+      type: INLINE
       props:
-        sharding-count: 2
+        algorithm-expression: t_order$->{id % 2}
 #属性配置
 props:
   sql-show: true

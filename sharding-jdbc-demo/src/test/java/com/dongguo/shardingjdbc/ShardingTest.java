@@ -70,7 +70,7 @@ public class ShardingTest {
         for (long i = 4; i <= 8; i++) {
             Order order = new Order();
             order.setOrderNo("SP20230814000" + i);
-            order.setUserId(i);
+            order.setUserId(1L);
             order.setAmount(new BigDecimal(100));
             orderMapper.insert(order);
         }
