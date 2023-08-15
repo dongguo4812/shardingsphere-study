@@ -31,14 +31,9 @@ rules:
           # 分片列名称
           shardingColumn: user_id
           # 分片算法名称
-          shardingAlgorithmName: alg_mod
+          shardingAlgorithmName: alg_inline_userid
   # 分片算法配置
   shardingAlgorithms:
-    alg_mod:
-      type: MOD
-      props:
-        sharding-column: order_id
-        sharding-count: 2
     # 标准分片算法-行表达式分片算法
     alg_inline_userid:
       #基于行表达式的分片算法
