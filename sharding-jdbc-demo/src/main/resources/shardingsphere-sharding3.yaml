@@ -32,9 +32,6 @@ rules:
           shardingColumn: user_id
           # 分片算法名称
           shardingAlgorithmName: alg_mod
-      keyGenerateStrategy:
-        column: order_id
-        keyGeneratorName: snowflake
   # 分片算法配置
   shardingAlgorithms:
     alg_mod:
