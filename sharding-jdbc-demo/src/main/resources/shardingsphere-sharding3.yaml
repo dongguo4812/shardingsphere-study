@@ -24,7 +24,7 @@ rules:
   autoTables:
     # 逻辑表名
     t_order:
-      actualDataSources : server-order0, server-order1
+      actualDataSources : server-order1
       #分库策略
       shardingStrategy:
         standard:

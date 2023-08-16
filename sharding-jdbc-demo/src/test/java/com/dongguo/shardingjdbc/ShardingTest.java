@@ -7,6 +7,7 @@ import com.dongguo.shardingjdbc.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.math.BigDecimal;
 
@@ -60,7 +61,19 @@ public class ShardingTest {
         order.setAmount(new BigDecimal(100));
         orderMapper.insert(order);
     }
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
+    @Test
+    public void testCreateAutoOrderMod() {
+        jdbcTemplate.execute("CREATE TABLE t_order (\n" +
+                "  id BIGINT,\n" +
+                "  order_no VARCHAR(30),\n" +
+                "  user_id BIGINT,\n" +
+                "  amount DECIMAL(10,2),\n" +
+                "  PRIMARY KEY(id) USING BTREE\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+    }
     /**
      * 水平分片：分库插入数据测试
      */
@@ -70,7 +83,7 @@ public class ShardingTest {
         for (long i = 4; i <= 8; i++) {
             Order order = new Order();
             order.setOrderNo("SP20230814000" + i);
-            order.setUserId(1L);
+            order.setUserId(i);
             order.setAmount(new BigDecimal(100));
             orderMapper.insert(order);
         }

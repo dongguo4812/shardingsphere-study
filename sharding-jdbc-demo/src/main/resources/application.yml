@@ -12,7 +12,7 @@ spring:
 #    url: jdbc:shardingsphere:classpath:shardingsphere-sharding.yaml
     #水平分片
     #url: jdbc:shardingsphere:classpath:shardingsphere-sharding2.yaml
-    url: jdbc:shardingsphere:classpath:shardingsphere-sharding4.yaml
+    url: jdbc:shardingsphere:classpath:shardingsphere-sharding3.yaml
 # Swagger配置
 swagger:
   # 是否开启swagger
