@@ -1,5 +1,11 @@
 # 数据源配置
 dataSources:
+  server-user:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.122.150:3301/db_user
+    username: root
+    password: 123456
   server-order0:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
     driverClassName: com.mysql.jdbc.Driver
@@ -15,23 +21,25 @@ dataSources:
 #规则配置
 rules:
 - !SHARDING
-  autoTables:
+  tables:
     # 逻辑表名
     t_order:
-      actualDataSources : server-order${0..1}
-      #分片策略
-      shardingStrategy:
+      actualDataNodes: server-order0.t_order${0..1}
+      #分库策略
+      tableStrategy:
         standard:
           # 分片列名称
-          shardingColumn: user_id
+          shardingColumn: id
           # 分片算法名称
-          shardingAlgorithmName: alg_mod
+          shardingAlgorithmName: alg_inline_id
   # 分片算法配置
   shardingAlgorithms:
-    alg_mod:
-      type: MOD
+    # 标准分片算法-行表达式分片算法
+    alg_inline_id:
+      #基于行表达式的分片算法
+      type: INLINE
       props:
-        sharding-count: 4
+        algorithm-expression: t_order${id % 2}
 #属性配置
 props:
   sql-show: true
