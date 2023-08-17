@@ -24,7 +24,7 @@ rules:
   tables:
     # 逻辑表名
     t_order:
-      actualDataNodes: server-order${0..1}.t_order0
+      actualDataNodes: server-order${0..1}.t_order_0
       #分库策略
       databaseStrategy:
         standard:

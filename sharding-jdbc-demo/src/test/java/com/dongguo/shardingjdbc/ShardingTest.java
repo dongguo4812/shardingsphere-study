@@ -61,26 +61,36 @@ public class ShardingTest {
         order.setAmount(new BigDecimal(100));
         orderMapper.insert(order);
     }
+
+    /**
+     * 水平分片：分库插入数据测试
+     */
+    @Test
+    public void testInsertOrderDatabaseStrategy(){
+        for (long i = 1; i <= 10; i++) {
+            Order order = new Order();
+            order.setOrderNo("SP20230814000" + i);
+            order.setUserId(i);
+            order.setAmount(new BigDecimal(100));
+            orderMapper.insert(order);
+        }
+    }
+
+
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 
     @Test
     public void testCreateAutoOrderMod() {
         jdbcTemplate.execute("CREATE TABLE t_order (\n" +
-                "  id BIGINT,\n" +
+                "  order_id BIGINT,\n" +
                 "  order_no VARCHAR(30),\n" +
                 "  user_id BIGINT,\n" +
                 "  amount DECIMAL(10,2),\n" +
-                "  PRIMARY KEY(id) USING BTREE\n" +
+                "  PRIMARY KEY(order_id) USING BTREE\n" +
                 ") ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
-    }
-    /**
-     * 水平分片：分库插入数据测试
-     */
-    @Test
-    public void testInsertOrderDatabaseStrategy(){
-
-        for (long i = 4; i <= 8; i++) {
+        for (long i = 1; i <= 10; i++) {
             Order order = new Order();
             order.setOrderNo("SP20230814000" + i);
             order.setUserId(i);
