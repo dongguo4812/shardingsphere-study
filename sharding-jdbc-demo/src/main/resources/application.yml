@@ -15,7 +15,8 @@ spring:
     #水平分片-分表
 #    url: jdbc:shardingsphere:classpath:shardingsphere-sharding3.yaml
     #水平分片-分库分表
-    url: jdbc:shardingsphere:classpath:shardingsphere-sharding4.yaml
+#    url: jdbc:shardingsphere:classpath:shardingsphere-sharding4.yaml
+    url: jdbc:shardingsphere:classpath:shardingsphere-sharding5.yaml
 # Swagger配置
 swagger:
   # 是否开启swagger

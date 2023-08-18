@@ -29,6 +29,7 @@ rules:
     # 分片算法配置
     shardingAlgorithms:
       alg_mod:
+        #自动分片算法-取模分片算法
         type: MOD
         props:
           sharding-count: 4

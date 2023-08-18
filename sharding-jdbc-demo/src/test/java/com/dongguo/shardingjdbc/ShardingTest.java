@@ -133,13 +133,12 @@ public class ShardingTest {
     }
 
     /**
-     * 分表插入数据测试
+     * 分片插入数据测试
      */
     @Test
     public void testInsertOrderShardingStrategy(){
 
         for (long i = 1; i < 5; i++) {
-
             Order order = new Order();
             order.setOrderNo("SP20230814000" + i);
             order.setUserId(1L);
@@ -148,10 +147,24 @@ public class ShardingTest {
         }
 
         for (long i = 5; i < 9; i++) {
-
             Order order = new Order();
             order.setOrderNo("SP20230814000" + i);
             order.setUserId(2L);
+            order.setAmount(new BigDecimal(100));
+            orderMapper.insert(order);
+        }
+
+        for (long i = 10; i < 15; i++) {
+            Order order = new Order();
+            order.setOrderNo("SP20230814000" + i);
+            order.setUserId(3L);
+            order.setAmount(new BigDecimal(100));
+            orderMapper.insert(order);
+        }
+        for (long i = 15; i < 19; i++) {
+            Order order = new Order();
+            order.setOrderNo("SP20230814000" + i);
+            order.setUserId(4L);
             order.setAmount(new BigDecimal(100));
             orderMapper.insert(order);
         }
