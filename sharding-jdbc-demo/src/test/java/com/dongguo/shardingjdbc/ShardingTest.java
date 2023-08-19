@@ -169,4 +169,20 @@ public class ShardingTest {
             orderMapper.insert(order);
         }
     }
+
+    /**
+     * 哈希取模
+     */
+    @Test
+    public void testInsertOrderHashModStrategy(){
+
+        for (long i = 1; i < 10; i++) {
+            Order order = new Order();
+            order.setOrderNo("SP20230814000" + i);
+            order.setUserId(1L);
+            order.setAmount(new BigDecimal(100));
+            orderMapper.insert(order);
+            System.out.println("对订单号的hash值取模：" + order.getOrderNo().hashCode() % 4);
+        }
+    }
 }
