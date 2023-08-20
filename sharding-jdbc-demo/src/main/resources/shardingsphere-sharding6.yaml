@@ -32,12 +32,18 @@ rules:
           shardingColumn: order_no
           # 分片算法名称
           shardingAlgorithmName: alg_hash_mod
+#      keyGenerateStrategy:
+#        column: id
+#        keyGeneratorName: snowflake
   # 分片算法配置
   shardingAlgorithms:
     alg_hash_mod:
       type: HASH_MOD
       props:
         sharding-count: 4
+#  keyGenerators:
+#    snowflake:
+#      type: SNOWFLAKE
 #属性配置
 props:
   sql-show: true
