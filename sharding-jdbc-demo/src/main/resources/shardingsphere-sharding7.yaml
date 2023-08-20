@@ -52,6 +52,10 @@ rules:
 - !BROADCAST
   tables: # 广播表规则列表
     - t_dict
+#- !SINGLE
+#  tables:
+#    # MySQL 风格
+#    - server-order0.t_config
 #属性配置
 props:
   sql-show: true

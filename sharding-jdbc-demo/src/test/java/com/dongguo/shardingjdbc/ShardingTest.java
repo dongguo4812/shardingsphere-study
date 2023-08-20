@@ -1,10 +1,7 @@
 package com.dongguo.shardingjdbc;
 
 import com.dongguo.shardingjdbc.entity.*;
-import com.dongguo.shardingjdbc.mapper.DictMapper;
-import com.dongguo.shardingjdbc.mapper.OrderItemMapper;
-import com.dongguo.shardingjdbc.mapper.OrderMapper;
-import com.dongguo.shardingjdbc.mapper.UserMapper;
+import com.dongguo.shardingjdbc.mapper.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -255,5 +252,24 @@ public class ShardingTest {
 
         List<Dict> dicts = dictMapper.selectList(null);
         dicts.forEach(System.out::println);
+    }
+    @Test
+    public void testCreateSingleTable() {
+        jdbcTemplate.execute("CREATE TABLE t_config (\n" +
+                "  id BIGINT NOT NULL AUTO_INCREMENT,\n" +
+                "  config VARCHAR(200),\n" +
+                "  PRIMARY KEY(id) USING BTREE\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;");
+    }
+    @Autowired
+    private ConfigMapper configMapper;
+    /**
+     * 单表测试
+     */
+    @Test
+    public void testSelectSingle(){
+        Config config = new Config();
+        config.setConfig("config1");
+        configMapper.insert(config);
     }
 }
