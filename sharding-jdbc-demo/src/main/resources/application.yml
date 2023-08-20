@@ -19,7 +19,9 @@ spring:
     #自动分片算法-取模分片算法
 #    url: jdbc:shardingsphere:classpath:shardingsphere-sharding5.yaml
     #自动分片算法-哈希取模分片算法
-    url: jdbc:shardingsphere:classpath:shardingsphere-sharding6.yaml
+#    url: jdbc:shardingsphere:classpath:shardingsphere-sharding6.yaml
+    #分片-多表关联
+    url: jdbc:shardingsphere:classpath:shardingsphere-sharding7.yaml
 # Swagger配置
 swagger:
   # 是否开启swagger
